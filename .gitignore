@@ -1,4 +1,4 @@
 *.autosave
 sql/diseñoDiagramaRelacional.dia~
 sql/modelo relacional base de datos.dia~
-nodemodules
+node_modules/
