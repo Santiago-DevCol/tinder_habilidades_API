@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "knex": "knex init",
+    "knex_migrations": "knex migrate:make empresa && knex migrate:make persona && knex migrate:make servicios && knex migrate:make habilidades",
+    "knex_latest": "knex migrate:latest"
   },
   "keywords": [],
   "author": "",
