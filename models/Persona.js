@@ -4,17 +4,18 @@ const database = require('knex')(connection);
 
 
  const createPersona = (persona) => {
-    return database('persona')
+    return database('personas')
     .insert(persona);
  };
 
  const getPersona = (persona) => {
-   console.log('persona',persona)
-   return database('producto')
-   .where({idPersona:persona});
+   let personaid= atob(persona);
+   //console.log('persona',personaid)
+   return database('personas')
+   .where({id_persona:personaid});
 };
-const getAllPersonas = (persona) => {
-   return database.select('*').from('persona');
+const getAllPersonas = () => {
+   return database.select('*').from('personas');
 };
 
 

@@ -10,9 +10,10 @@ const createPersona = (req, res) => {
     });
 };
 const getPersona = (req, res) => {
-    PersonaModel.getPersona(req.params.id)
+    let persona=btoa(req.params.id);
+    PersonaModel.getPersona(persona)
     .then((respuesta) => {
-        return res.status(201).send({ message: respuesta })
+        return res.status(200).send({ message: respuesta })
     })
     .catch((error) => {
         return res.status(500).send({ message:"Ocurrio un error, "+error })
@@ -21,7 +22,7 @@ const getPersona = (req, res) => {
 const getAllPersonas = (req, res) => {
     PersonaModel.getAllPersonas()
     .then((respuesta) => {
-        return res.status(201).send({ message: respuesta })
+        return res.status(200).send({ message: respuesta })
     })
     .catch((error) => {
         return res.status(500).send({ message:"Ocurrio un error, "+error })
