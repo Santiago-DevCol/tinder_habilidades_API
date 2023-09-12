@@ -19,7 +19,7 @@ const getHabilidad = (req, res) => {
     });
 };
 const getAllHabilidades = (req, res) => {
-    HabilidadModel.getAllEmpresas()
+    HabilidadModel.getAllHabilidades()
     .then((respuesta) => {
         return res.status(201).send({ message: respuesta })
     })
