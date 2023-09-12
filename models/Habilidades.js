@@ -9,12 +9,10 @@ const createHabilidad = (habil) => {
 };
 
 const getHabilidad = (habil) => {
-   console.log('habilidades',habil)
+   let habilidadid = atob(habil);
+   console.log('habilidades',habilidadid)
    return database('habilidades')
-   .where({idHabilidad:habil})
-   .then((respuesta) => {
-      return respuesta.message[0];
-   });
+   .where({id_habilidad:habilidadid})
 };
 
 const getAllHabilidades = () => {

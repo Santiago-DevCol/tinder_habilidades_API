@@ -10,7 +10,8 @@ const createHabilidad = (req, res) => {
     });
 };
 const getHabilidad = (req, res) => {
-    HabilidadModel.getHabilidad(req.params.id)
+    let habilidad = btoa(req.params.id);
+    HabilidadModel.getHabilidad(habilidad)
     .then((respuesta) => {
         return res.status(201).send({ message: respuesta })
     })
