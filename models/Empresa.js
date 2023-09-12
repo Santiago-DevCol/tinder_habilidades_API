@@ -8,12 +8,13 @@ const database = require('knex')(connection);
     .insert(empresa);
  };
  const getEmpresa = (empresa) => {
-   console.log('empresa',empresa)
+   let empresaid = empresa;
+   // console.log('empresa',empresa)
    return database('empresa')
-   .where({id:empresa})
-   .then((respuesta) => {
-      return respuesta.message[0];
-   });
+   .where({id:empresaid})
+   // .then((respuesta) => {
+   //    return respuesta.message[empresa];
+   // });
 };
 /*Or const getOneClient = (id) => {
    return database.select('*').from('cliente').where('dni',id);

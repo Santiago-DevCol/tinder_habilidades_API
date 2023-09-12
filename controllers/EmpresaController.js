@@ -12,7 +12,7 @@ const createEmpresa = (req, res) => {
 const getEmpresa = (req, res) => {
     EmpresaModel.getEmpresa(req.params.id)
     .then((respuesta) => {
-        return res.status(201).send({ message: respuesta })
+        return res.status(200).send({ message: respuesta })
     })
     .catch((error) => {
         return res.status(500).send({ message:"Ocurrio un error,  "+error })
@@ -21,7 +21,7 @@ const getEmpresa = (req, res) => {
 const getAllEmpresas = (req, res) => {
     EmpresaModel.getAllEmpresas()
     .then((respuesta) => {
-        return res.status(201).send({ message: respuesta })
+        return res.status(200).send({ message: respuesta })
     })
     .catch((error) => {
         return res.status(500).send({ message:"Ocurrio un error , "+error })
