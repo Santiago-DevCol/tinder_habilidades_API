@@ -9,7 +9,7 @@ router.post('/',EmpresaController.createEmpresa);
 router.get('/', EmpresaController.getAllEmpresas);
 router.get('/:id',EmpresaController.getEmpresa);
 //actualizar
-router.put('/:id', (req,res) => res.send({message: " Se sustituyp"}));
+router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
 router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 
 //delete
