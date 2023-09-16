@@ -8,7 +8,7 @@ router.post('/', HabilidadesController.createHabilidad);
 router.get('/', HabilidadesController.getAllHabilidades);
 router.get('/:id', HabilidadesController.getHabilidad);
 //actualizar
-router.put('/:id', (req,res) => res.send({message: " Se sustituyp"}));
+router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
 
 router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 

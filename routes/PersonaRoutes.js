@@ -9,7 +9,7 @@ router.post('/', PersonaController.createPersona);
 router.get('/', PersonaController.getAllPersonas);
 router.get('/:id',PersonaController.getPersona);
 //actualizar
-router.put('/:id', (req,res) => res.send({message: " Se sustituyo"}));
+router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
 router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 
 //delete
