@@ -1,0 +1,11 @@
+{
+    "nombre_persona":"Santiago",
+    "apellido_persona":"Gonzalez",
+    "email":"santiago@gmail.com",
+    "password":"12345",
+    "locacion":"Bogotá D.C.",
+    "precio_servicio":"70000",
+    "perfil":"persona altamente capacitada para poder diseñar landing page's",
+    "calificacion":"0",
+    "status":"activo"
+}
