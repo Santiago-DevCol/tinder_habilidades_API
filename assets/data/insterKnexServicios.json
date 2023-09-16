@@ -1,9 +1,7 @@
 //json de ejemplo para crear registros de servicios
-{         
-"nit":"860",
-"nombre_empresa":"solo qcos",
-"direccion":"av 1 no 345sur",
-"email":"er@tr.co",
-"telefono_empresa":"23445555",
-"estatus":"activo"
+{
+	"fk_empresa_id":1,
+	"fk_persona_id":1,
+	"nombre_servicio":"prueba",
+	"descripción":"primer servicio de prueba"
 }
