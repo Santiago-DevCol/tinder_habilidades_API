@@ -1,5 +1,3 @@
-// este documento se debe usar en la peticion post para crear habilidades en postman o parecido
-// metodo http://localhost:3000/api/v1/Habilidades
 [
     {
         "descripción": "Desarrollo web y programación"
