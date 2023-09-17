@@ -1,11 +1,14 @@
 // Configuración del servidor
+const ENV = require('dotenv');
 const express = require('express');
+
+const Routes = require('./routes');
+const { configDotenv } = require('dotenv');
 
 const server = express();
 
-const port = 3000;
+const port = 3000 || process.env.PORT;
 
-const Routes = require('./routes');
 server.use(express.json());
 server.use('/api/v1', Routes);
 
