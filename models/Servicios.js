@@ -8,16 +8,10 @@ const database = require('knex')(connection);
  };
  const getServicios = (Servicios) => {
    let Serviciosid = Servicios;
-   // console.log('Servicios',Servicios)
    return database('servicios')
    .where({id_servicio:Serviciosid})
-   // .then((respuesta) => {
-   //    return respuesta.message[Servicios];
-   // });
 };
-/*Or const getOneClient = (id) => {
-   return database.select('*').from('cliente').where('dni',id);
-} */
+
 const getAllServicios = () => {
    return database.select('*').from('servicios');
 };
