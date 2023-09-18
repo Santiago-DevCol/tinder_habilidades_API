@@ -45,8 +45,30 @@ async function encryptPassword (pw){
    }
 }
 
+const BuscarUsuario = (usuario) =>{
+   try{
+      let user = usuario
+      return database('empresa')
+      .where({email:user, estatus:'activo'})
+   }catch(error){
+      console.log(`parece que hay un error: ${error}`);
+   }
+}
+
+const validarPassword = async (queryUser,QueryDB) => {
+   try {
+      const match = await bcrypt.compare(queryUser, QueryDB);
+      return match;
+   } catch (error) {
+      console.error('Error al verificar la contraseña:', error);
+      return false;
+   }
+}
+
  module.exports = {
     createEmpresa,
     getEmpresa,
-    getAllEmpresas
+    getAllEmpresas,
+    BuscarUsuario,
+    validarPassword
  };
