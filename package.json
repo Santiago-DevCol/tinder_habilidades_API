@@ -11,6 +11,7 @@
     "knex_mig_add_colum_service": "knex migrate:make addColumnServicios",
     "knex_mig_add_colum_serviceValor": "knex migrate:make addColumnServiciosValores",
     "knex_mig_add_colum_passEmpresa": "knex migrate:make addColumnEmpresaPassword",
+    "knex_mig_make_unique_nitEmpresa":"knex migrate:make make_unique_nit",
     "knex_latest": "knex migrate:latest"
   },
   "keywords": [],
