@@ -1,4 +1,4 @@
-//json de ejemplo para crear registros de servicios
+
 {
 	"fk_empresa_id":1,
 	"fk_persona_id":1,
