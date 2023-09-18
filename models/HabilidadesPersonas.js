@@ -9,10 +9,18 @@ const createHabilidadPersona = (habil) => {
 };
 
 const getHabilidadPersonas = (habil) => {
-   let habilidadPersonaid = atob(habil);
+   // let habilidadPersonaid = atob(habil);
    ///console.log('habilidades',habilidadPersonaid)
-   return database('habilidad_personas')
-   .where({id_habilidad:habilidadPersonaid})
+   return database.select ('personas.id_persona','personas.nombre_persona','habilidades.id_habilidad','habilidades.descripción')
+   .from ('habilidad_personas')
+   .join ('personas', function (){
+      this  .on ('personas.id_persona', '=', 'habilidad_personas.fk_persona_id')
+   })
+   .join ('habilidades', function(){this .on ('habilidades.id_habilidad' ,'=' ,'habilidad_personas.fk_habilidad_id')
+})
+
+
+   .where('id_persona_habilidad',habil)
 };
 
 const getAllHabilidadesPersonas = () => {
