@@ -9,7 +9,7 @@ const createHabilidadPersona = (habil) => {
 };
 
 const getHabilidadPersonas = (id_persona) => {
-
+   let idPersona = atob(id_persona)
    return database
       .select(
          'personas.id_persona',
@@ -20,7 +20,7 @@ const getHabilidadPersonas = (id_persona) => {
       .from('habilidad_personas')
       .innerJoin('personas','habilidad_personas.fk_persona_id', '=', 'personas.id_persona')
       .innerJoin('habilidades','habilidad_personas.fk_habilidad_id' , '=', 'habilidades.id_habilidad')
-      .where('personas.id_persona', id_persona);
+      .where('personas.id_persona', idPersona);
 };
 
 const getAllHabilidadesPersonas = () => {
