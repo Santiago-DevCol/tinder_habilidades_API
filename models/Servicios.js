@@ -10,8 +10,6 @@ const getServicios = (Servicios) => {
    // let Serviciosid = Servicios;
    // console.log('Servicios',Servicios)
 
-
-
    return database.select('servicios.id_servicio','personas.id_persona', 'personas.nombre_persona', 'personas.precio_servicio', 'servicios.descripción',
       'empresa.nombre_empresa', 'servicios.status')
       .from('personas')
@@ -44,7 +42,10 @@ const getAllServicios = () => {
             .on('empresa.id', '=', 'servicios.fk_empresa_id')
       });
 };
-
+/** Validar empresa y cliente status, luego el valor obtenido actualizarlo en el valor status de servicio*/
+const validateServicio = () => {
+   
+};
 
 module.exports = {
    createServicios,
