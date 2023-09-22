@@ -45,6 +45,15 @@ const getAllServicios = () => {
       });
 };
 
+const ActualizarEstatusEmpresa =(id_servicio,estadoBody) => {
+   return database('servicios')
+   .where({ id_servicio})
+   .update ({status_empresa:estadoBody});
+   }
+
+
+
+
 
 module.exports = {
    createServicios,
