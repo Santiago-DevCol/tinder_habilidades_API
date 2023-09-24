@@ -10,8 +10,9 @@ router.get('/', ServiciosController.getAllServicios);
 router.get('/:id', ServiciosController.getServicios);
 
 //actualizar
-router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
-router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
+router.patch('/empresa', ServiciosController.actualizarEstadoServicioEmpresa);
+router.patch('/persona', ServiciosController.actualizarEstadoServicioPersona);
+//router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 
 //delete
 // router.delete('/:id', ServiciosController.deleteServicios); 

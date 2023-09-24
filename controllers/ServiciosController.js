@@ -27,8 +27,32 @@ const getAllServicios = (req, res) => {
         return res.status(500).send({ message:"Ocurrio un error , "+error })
     });
 };
+const actualizarEstadoServicioEmpresa = async (req,res) => {
+    try {
+        const respuesta = await ServiciosModel.ActualizarEstatusEmpresa(req.body);
+        return res.status(200).json({ message: respuesta });
+    } catch (error) {
+        console.error('Error al actualizar el estado:', error);
+        return res.status(500).json({ message: "Ocurrió un error , " + error.message });
+    }
+}
+
+const actualizarEstadoServicioPersona = async (req, res) => {
+    try {
+        const respuesta = await ServiciosModel.ActualizarEstatusPersona(req.body);
+        return res.status(200).json({ message: respuesta });
+    } catch (error) {
+        console.error('Error al actualizar el estado:', error);
+        return res.status(500).json({ message: "Ocurrió un error , " + error.message });
+    }
+}
+
+
+
 module.exports = {
     createServicios,
     getServicios,
-    getAllServicios
+    getAllServicios,
+    actualizarEstadoServicioEmpresa,
+    actualizarEstadoServicioPersona
 }
