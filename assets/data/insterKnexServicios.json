@@ -1,6 +1,4 @@
-"id_servicio":
 {
-	
 	"fk_empresa_id":1,
 	"fk_persona_id":1,
 	"nombre_servicio":"prueba",
@@ -11,5 +9,5 @@
 	"por_cobrar":49000,
 	"horas_contratadas":1,
 	"status_persona":"solicitado",
-	"status_empresa":"solicitado",
+	"status_empresa":"solicitado"
 }
