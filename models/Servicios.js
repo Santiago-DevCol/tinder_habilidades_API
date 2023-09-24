@@ -10,8 +10,6 @@ const getServicios = (Servicios) => {
    // let Serviciosid = Servicios;
    // console.log('Servicios',Servicios)
 
-
-
    return database.select('servicios.id_servicio','personas.id_persona', 'personas.nombre_persona', 'personas.precio_servicio', 'servicios.descripción',
       'empresa.nombre_empresa', 'servicios.status')
       .from('personas')

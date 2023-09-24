@@ -1,5 +1,8 @@
 const EmpresaModel = require('../models/Empresa.js');
 
+/**Se crean los controladores getEntidad y createEntidad,
+ * donde se leen valores unicos o todos los valores de cada base de datos.
+ */
 const createEmpresa = (req, res) => {
     EmpresaModel.createEmpresa(req.body)
     .then((respuesta) => {

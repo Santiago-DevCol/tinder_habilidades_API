@@ -11,7 +11,8 @@
     "knex_mig_add_colum_service": "knex migrate:make addColumnServicios",
     "knex_mig_add_colum_serviceValor": "knex migrate:make addColumnServiciosValores",
     "knex_mig_add_colum_passEmpresa": "knex migrate:make addColumnEmpresaPassword",
-    "knex_mig_make_unique_nitEmpresa":"knex migrate:make make_unique_nit",
+    "knex_mig_make_unique_nitEmpresa": "knex migrate:make make_unique_nit",
+    "knex_mig_add_column_servicio_horasContratadas": "knex migrate:make add_column_servicio_horasContratadas",
     "knex_latest": "knex migrate:latest"
   },
   "keywords": [],
@@ -20,6 +21,7 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "knex": "^2.5.1",
