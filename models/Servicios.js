@@ -42,13 +42,101 @@ const getAllServicios = () => {
             .on('empresa.id', '=', 'servicios.fk_empresa_id')
       });
 };
-/** Validar empresa y cliente status, luego el valor obtenido actualizarlo en el valor status de servicio*/
-const validateServicio = () => {
-   
-};
+
+const ActualizarEstatusEmpresa = async (data) => {
+   try {
+      const {id_servicio,status_empresa} = data
+      let estadoServicioEmpresa
+      let estadoServicioPersona
+
+      console.log(data);
+         const resultUpdate = await database('servicios')
+         .where({ id_servicio:id_servicio})
+         .update ({status_empresa:status_empresa})
+
+      if (resultUpdate.length != 0) {
+         estadoServicioEmpresa = await validateStausEmpresa(id_servicio);
+         estadoServicioPersona = await validateStausPersona(id_servicio);
+
+         if (estadoServicioEmpresa[0].status == estadoServicioEmpresa[0].status_empresa || estadoServicioPersona[0].status == estadoServicioPersona[0].status_persona) {
+            console.log('el estado del servicio ya fue actualizado anteriormente');
+               return 'el estado del servicio ya fue actualizado anteriormente' 
+         }else if ((estadoServicioEmpresa == estadoServicioPersona) && (estadoServicioEmpresa.status != estadoServicioEmpresa) || (estadoServicioPersona.status != estadoServicioPersona) ) {
+            await database('servicios')
+               .where({ id_servicio:data.id_servicio})
+               .update ({status:status_empresa})
+               return 'El estado de confirmacion del servicio por la empresa se actualizó correctamente'
+         }else{
+            console.log('error en validacion multiple');
+            throw new Error('error en validacion multiple')
+
+         }
+      }else{
+         console.log('No se realizó ninguna actualización');
+         return 'No se realizó ninguna actualización'
+      }
+   } catch (error) {
+      console.error('Error al actualizar el estado:', error);
+      throw error
+   }
+}
+
+const ActualizarEstatusPersona = async (data) => {
+   try{
+      const {id_servicio,status_persona} = data
+      let estadoServicioEmpresa
+      let estadoServicioPersona
+      
+      console.log(data);
+      const resultUpdate = await database('servicios')
+      .where({ id_servicio:id_servicio})
+      .update ({status_persona:status_persona})
+      
+      if(resultUpdate.length != 0){
+
+         estadoServicioEmpresa = await validateStausEmpresa(id_servicio);
+         estadoServicioPersona = await validateStausPersona(id_servicio);
+         
+         if ( estadoServicioEmpresa[0].status == estadoServicioEmpresa[0].status_empresa || estadoServicioPersona[0].status == estadoServicioPersona[0].status_persona) {
+         console.log('el estado del servicio ya fue actualizado anteriormente');
+         return 'el estado del servicio ya fue actualizado anteriormente' 
+
+         }else if ((estadoServicioEmpresa == estadoServicioPersona) && (estadoServicioEmpresa.status != estadoServicioEmpresa) || (estadoServicioPersona.status != estadoServicioPersona) ){
+         await database('servicios')
+         .where({ id_servicio:data.id_servicio})
+         .update ({status:status_persona})
+         return 'El estado de confirmacion del servicio por la persona se actualizó correctamente'
+         }else{
+         console.log('error en validacion multiple');
+         throw new Error('error en validacion multiple')
+
+         }
+      }else{
+         console.log('No se realizó ninguna actualización');
+         return 'No se realizó ninguna actualización'
+      }
+   } catch(error){
+      console.error('Error al actualizar el estado:', error);
+      throw error
+   }
+}
+
+const validateStausEmpresa = async (idServicio) =>{
+   return await database('servicios') 
+   .select('status_empresa','status')
+   .where({id_servicio: idServicio})
+}
+
+const validateStausPersona = async (idServicio) =>{
+   return await database('servicios') 
+   .select('status_persona','status')
+   .where({id_servicio: idServicio})
+}
 
 module.exports = {
    createServicios,
    getServicios,
-   getAllServicios
+   getAllServicios,
+   ActualizarEstatusEmpresa,
+   ActualizarEstatusPersona
 };
