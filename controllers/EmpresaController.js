@@ -12,6 +12,24 @@ const createEmpresa = (req, res) => {
         return res.status(500).send({ message:"Algún error en la creación de la empresa, "+error });
     });
 };
+const updateEmpresaInfo = (req,res) => {
+    EmpresaModel.updateEmpresaInfo(req.params.id,req.body)
+    .then((respuesta) => {
+        return res.status(201).send({ message: respuesta })
+    })
+    .catch((error) => {
+        return res.status(500).send({ message:"Hubo un error en la creación de la empresa, "+error })
+    });
+};
+const updateEmpresaPassword = (req,res) => {
+    EmpresaModel.updateEmpresaPassword(req.params.id,req.body)
+    .then((respuesta) => {
+        return res.status(201).send({ message: respuesta })
+    })
+    .catch((error) => {
+        return res.status(500).send({ message:"Hubo un error en el cambio de contraseña, "+error })
+    });
+};
 const getEmpresa = (req, res) => {
     EmpresaModel.getEmpresa(req.params.id)
     .then((respuesta) => {
@@ -32,6 +50,8 @@ const getAllEmpresas = (req, res) => {
 };
 module.exports = {
     createEmpresa,
+    updateEmpresaInfo,
+    updateEmpresaPassword,
     getEmpresa,
     getAllEmpresas
 }
