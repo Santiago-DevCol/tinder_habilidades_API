@@ -9,6 +9,15 @@ const createPersona = (req, res) => {
         return res.status(500).send({ message:"Hubo un error en la creación de la persona, "+error })
     });
 };
+const updatePersonaInfo = (req,res) => {
+    PersonaModel.updatePersonaInfo(req.body)
+    .then((respuesta) => {
+        return res.status(201).send({ message: respuesta })
+    })
+    .catch((error) => {
+        return res.status(500).send({ message:"Hubo un error en la creación de la persona, "+error })
+    });
+};
 const getPersona = (req, res) => {
     let persona=btoa(req.params.id);
     PersonaModel.getPersona(persona)
@@ -31,5 +40,6 @@ const getAllPersonas = (req, res) => {
 module.exports = {
     createPersona,
     getPersona,
-    getAllPersonas
+    getAllPersonas,
+    updatePersonaInfo
 }

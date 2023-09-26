@@ -60,11 +60,38 @@ const validarPassword = async (queryUser,QueryDB) => {
       return false;
    }
 }
+const updatePersonaInfo = async (data) => {
+   try{
+   const {id_persona,nombre_persona,apellido_persona,email,password,locacion,precio_servicio,perfil} = data
+      
+   const personatUpdate = await database('personas')
+   .where({id_persona:id_persona})
+   .update ({
+   nombre_persona:nombre_persona,
+   apellido_persona:apellido_persona,
+   email:email,
+   password:password,
+   locacion:locacion,
+   precio_servicio:precio_servicio,
+   perfil:perfil
+});
+const mensaje = 'se actualizaron los datos efectivamente';
+console.log(mensaje);
+return  mensaje;
+   
+   }
+   catch {
+   const mensaje = 'No se realizo la actualización de los datos';
+   console.error(mensaje);   
+   return mensaje;
+   }
+}
 
  module.exports = {
     createPersona,
     getPersona,
     getAllPersonas,
     BuscarUsuario,
-    validarPassword
+    validarPassword,
+    updatePersonaInfo
  };

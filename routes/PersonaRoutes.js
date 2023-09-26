@@ -5,11 +5,12 @@ const {PersonaController} = require('../controllers');
 
 //crear
 router.post('/', PersonaController.createPersona);
+
 //leer
 router.get('/', PersonaController.getAllPersonas);
 router.get('/:id',PersonaController.getPersona);
 //actualizar
-router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
+router.put('/', PersonaController.updatePersonaInfo);
 router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 
 //delete
