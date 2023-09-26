@@ -71,13 +71,10 @@ const updateEmpresaInfo = async (id, data) => {
         direccion: direccion,
         telefono_empresa: telefono_empresa
       });
-    const mensaje = "se actualizaron los datos efectivamente";
-    console.log(mensaje);
-    return mensaje;
+    return data;
   } catch {
-    const mensaje = "No se realizo la actualización de los datos";
-    console.error(mensaje);
-    return mensaje;
+    console.error("se actualizaron los datos efectivamente");
+    return "se actualizaron los datos efectivamente";
   }
 };
 /**La función updateEmpresaPassword se encarga de actualizar la contraseña de la empresa usando su id y la contraseña antigua.
@@ -97,13 +94,10 @@ const updateEmpresaPassword = async (id, data) => {
         password: password
       });
 
-    mensaje = "la petición funciono";
-    console.log(mensaje);
-    return mensaje;
+    return data;
   } catch {
-    const mensaje = "No se realizo la actualización de la contraseña";
-    console.error(mensaje);
-    return mensaje;
+    console.error("No se realizo la actualización de la contraseña");
+    return "No se realizo la actualización de la contraseña";
   }
 };
 

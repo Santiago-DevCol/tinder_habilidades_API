@@ -75,13 +75,11 @@ const updatePersonaInfo = async (id, data) => {
         precio_servicio: precio_servicio,
         perfil: perfil,
       });
-    const mensaje = "se actualizaron los datos efectivamente";
-    console.log(mensaje);
-    return mensaje;
+    return data;
   } catch {
-    const mensaje = "No se realizo la actualización de los datos";
-    console.error(mensaje);
-    return mensaje;
+   
+    console.error(" no se actualizaron los datos efectivamente");
+    return "no se actualizaron los datos efectivamente";
   }
 };
 /**La función updatePassword se encarga de actualizar la contraseña del usuario usando su id y la contraseña antigua.
@@ -100,14 +98,11 @@ const updatePassword = async (id, data) => {
       .update({
         password: password,
       });
-
-    mensaje = "la petición funciono";
-    console.log(mensaje);
-    return mensaje;
+    return data;
   } catch {
-    const mensaje = "No se realizo la actualización de la contraseña";
-    console.error(mensaje);
-    return mensaje;
+  
+    console.error("No se realizo la actualización de la contraseña");
+    return "No se realizo la actualización de la contraseña";
   }
 };
 
