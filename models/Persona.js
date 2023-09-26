@@ -60,17 +60,16 @@ const validarPassword = async (queryUser,QueryDB) => {
       return false;
    }
 }
-const updatePersonaInfo = async (data) => {
+const updatePersonaInfo = async (id,data) => {
    try{
-   const {id_persona,nombre_persona,apellido_persona,email,password,locacion,precio_servicio,perfil} = data
-      
+   const {nombre_persona,apellido_persona,email,locacion,precio_servicio,perfil} = data
+   const id_persona = id; 
    const personatUpdate = await database('personas')
    .where({id_persona:id_persona})
    .update ({
    nombre_persona:nombre_persona,
    apellido_persona:apellido_persona,
    email:email,
-   password:password,
    locacion:locacion,
    precio_servicio:precio_servicio,
    perfil:perfil
@@ -86,6 +85,35 @@ return  mensaje;
    return mensaje;
    }
 }
+/**La función updatePassword se encarga de actualizar la contraseña del usuario usando su id y la contraseña antigua. 
+ * Si la contraseña vieja es igual a la contraseña almacenada entonces se actualiza a una nueva contraseña
+ */
+const updatePassword= async (id,data) => {
+   try{
+   const {old_password,password} = data
+   const id_persona = id; 
+   const mensaje ="";
+   const personatUpdate = await database('personas')
+  
+   //falta poner un condicional que compruebe que el where sea verdadero, dependiendo el resultado se envia un mensaje u otro
+   //if(condicion == True){mensaje = "se ha actualizado la contraseña efectivamente"};
+   //else {mensaje ="La contraseña ingresada es incorrecta, porfavor intentelo de nuevo"};
+   .where({id_persona:id_persona,
+           password : old_password})
+   .update ({
+   password:password
+});
+
+mensaje = 'la petición funciono';
+console.log(mensaje);
+return  mensaje;
+   }
+   catch {
+   const mensaje = 'No se realizo la actualización de la contraseña';
+   console.error(mensaje);   
+   return mensaje;
+   }
+}
 
  module.exports = {
     createPersona,
@@ -93,5 +121,6 @@ return  mensaje;
     getAllPersonas,
     BuscarUsuario,
     validarPassword,
-    updatePersonaInfo
+    updatePersonaInfo,
+    updatePassword
  };

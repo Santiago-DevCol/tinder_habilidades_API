@@ -10,12 +10,21 @@ const createPersona = (req, res) => {
     });
 };
 const updatePersonaInfo = (req,res) => {
-    PersonaModel.updatePersonaInfo(req.body)
+    PersonaModel.updatePersonaInfo(req.params.id,req.body)
     .then((respuesta) => {
         return res.status(201).send({ message: respuesta })
     })
     .catch((error) => {
         return res.status(500).send({ message:"Hubo un error en la creación de la persona, "+error })
+    });
+};
+const updatePassword = (req,res) => {
+    PersonaModel.updatePassword(req.params.id,req.body)
+    .then((respuesta) => {
+        return res.status(201).send({ message: respuesta })
+    })
+    .catch((error) => {
+        return res.status(500).send({ message:"Hubo un error en el cambio de contraseña, "+error })
     });
 };
 const getPersona = (req, res) => {
@@ -41,5 +50,6 @@ module.exports = {
     createPersona,
     getPersona,
     getAllPersonas,
-    updatePersonaInfo
+    updatePersonaInfo,
+    updatePassword
 }
