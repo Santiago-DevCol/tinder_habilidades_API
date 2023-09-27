@@ -27,7 +27,9 @@ const updatePersonaInfo = (req, res) => {
     });
 };
 const updatePassword = (req, res) => {
-  PersonaModel.updatePassword(req.params.id, req.body)
+  const idPersona = req.params.id
+  const password = req.body
+  PersonaModel.updatePassword(idPersona, password)
     .then((respuesta) => {
       return res.status(201).send({ message: respuesta });
     })
