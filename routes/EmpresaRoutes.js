@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();//yo le digo a donde va a ir, redireccionar el contenido
 const {EmpresaController} = require('../controllers');
-const { updateEmpresaInfo } = require('../models/Empresa');
+
 
 //crear
 router.post('/',EmpresaController.createEmpresa);

@@ -22,12 +22,18 @@ const updateEmpresaInfo = (req,res) => {
     });
 };
 const updateEmpresaPassword = (req,res) => {
-    EmpresaModel.updateEmpresaPassword(req.params.id,req.body)
+    const idEmpresa = req.params.id;
+    const password = req.body;
+    EmpresaModel.updateEmpresaPassword(idEmpresa,password)
     .then((respuesta) => {
         return res.status(201).send({ message: respuesta })
     })
     .catch((error) => {
-        return res.status(500).send({ message:"Hubo un error en el cambio de contraseña, "+error })
+        return res
+            .status(500)
+            .send({ 
+                message:"Hubo un error en el cambio de contraseña, "+error 
+            });
     });
 };
 const getEmpresa = (req, res) => {
