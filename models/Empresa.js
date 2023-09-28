@@ -1,4 +1,4 @@
-const connection = require("../knexfile")["development"];
+const connection = require("../knexfile")['development'];
 const bcrypt = require("bcrypt");
 
 const database = require("knex")(connection);
@@ -82,21 +82,28 @@ const updateEmpresaInfo = async (id, data) => {
  */
 const updateEmpresaPassword = async (id, data) => {
   try {
-    const { old_password, password } = data;
+    const { password,new_pwd } = data;
     const id_empresa = id;
     const mensaje = "";
-        //falta poner un condicional que compruebe que el where sea verdadero, dependiendo el resultado se envia un mensaje u otro
-      //if(condicion == True){mensaje = "se ha actualizado la contraseña efectivamente"};
-      //else {mensaje ="La contraseña ingresada es incorrecta, porfavor intentelo de nuevo"};
-    const empresaUpdate = await database("empresa")
-      .where({ id: id_empresa, password: old_password })
-      .update({
-        password: password
-      });
+      
+    const dataEmpresa = await getEmpresa(id_empresa);
 
-    return data;
-  } catch {
-    console.error("No se realizo la actualización de la contraseña");
+    const passwordMatch = await validarPassword(password,dataEmpresa[0].password);
+    const newPassword = await encryptPassword(new_pwd);
+
+    if (passwordMatch) {
+      const sql = await database("empresa")
+        .where({id:id_empresa, password:dataEmpresa[0].password })
+        .update({
+          password: newPassword,
+        });
+        console.log(sql);
+      return "Contraseña actualizada correctamente"
+    } else {
+      return "la clave actual no coincide"
+    }
+  } catch (error){
+    console.error("No se realizo la actualización de la contraseña " + error);
     return "No se realizo la actualización de la contraseña";
   }
 };
