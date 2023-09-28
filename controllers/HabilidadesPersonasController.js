@@ -32,8 +32,19 @@ const getAllHabilidadesPersonas = (req, res) => {
       return res.status(500).send({ message: "Ocurrio un error , " + error });
     });
 };
+
+const deleteHabilidadPersona = (req,res) =>{
+  HabilidadPersonaModel.deleteHabilidadPersona(req.body)
+  .then((respuesta) => {
+      return res.status(201).send({ message: respuesta })
+  })
+  .catch((error) => {
+      return res.status(500).send({ message: 'no se pueden eliminar habilidades' })
+  });
+}; 
 module.exports = {
   createHabilidadPersona,
   getHabilidadPersonas,
   getAllHabilidadesPersonas,
+  deleteHabilidadPersona,
 };
