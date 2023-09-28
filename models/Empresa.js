@@ -63,18 +63,20 @@ const updateEmpresaInfo = async (id, data) => {
     const { nit, nombre_empresa, direccion, email, telefono_empresa } = data;
     const id_empresa = id;
     const empresaUpdate = await database("empresa")
-      .where({ id: id_empresa })
+      .where({ id: id_empresa, nit: nit , email: email})
       .update({
-        nit: nit,
         nombre_empresa: nombre_empresa,
-        email: email,
         direccion: direccion,
         telefono_empresa: telefono_empresa
       });
-    return data;
-  } catch {
-    console.error("se actualizaron los datos efectivamente");
-    return "se actualizaron los datos efectivamente";
+      if(empresaUpdate == 0){
+        return `res:${empresaUpdate} | ms: no se actualizaron los datos efectivamente`
+      }else{
+        return empresaUpdate;
+      }
+  } catch (error){
+    console.error("No se actualizaron los datos efectivamente" + error);
+    return "No se actualizaron los datos efectivamente";
   }
 };
 /**La función updateEmpresaPassword se encarga de actualizar la contraseña de la empresa usando su id y la contraseña antigua.
