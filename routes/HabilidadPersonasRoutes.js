@@ -13,5 +13,5 @@ router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
 router.patch('/:id', (req,res) => res.send({message: " Se modificó"}));
 
 //delete
-router.delete('/', (req,res) => res.send({message: " Se borró"}));
+router.delete('/:id', HabilidadesPersonasController.deleteHabilidadPersona); 
 module.exports = router;
