@@ -79,9 +79,9 @@ const updatePersonaInfo = async (id, data) => {
       }else{
         return personatUpdate;
       }
-  } catch {
+  } catch(error){
    
-    console.error(" no se actualizaron los datos efectivamente");
+    console.error(" no se actualizaron los datos efectivamente "+ error);
     return "no se actualizaron los datos efectivamente";
   }
 };

@@ -1,5 +1,5 @@
 const PersonaModel = require("../models/Persona.js");
-const LoginModel = require("../models/Login.js")
+
 
 const createPersona = (req, res) => {
   PersonaModel.createPersona(req.body)
