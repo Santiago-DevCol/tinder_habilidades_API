@@ -66,16 +66,19 @@ const updatePersonaInfo = async (id, data) => {
     } = data;
     const id_persona = id;
     const personatUpdate = await database("personas")
-      .where({ id_persona: id_persona })
+      .where({ id_persona: id_persona, email:email })
       .update({
         nombre_persona: nombre_persona,
         apellido_persona: apellido_persona,
-        email: email,
         locacion: locacion,
         precio_servicio: precio_servicio,
         perfil: perfil,
       });
-    return data;
+      if (personatUpdate == 0) {
+        return `res:${personatUpdate} | ms: no se actualizaron los datos efectivamente`
+      }else{
+        return personatUpdate;
+      }
   } catch {
    
     console.error(" no se actualizaron los datos efectivamente");
