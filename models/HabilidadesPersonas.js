@@ -1,3 +1,4 @@
+// inicando coneccion con bd knex
 const connection = require("../knexfile")["development"];
 
 const database = require("knex")(connection);
