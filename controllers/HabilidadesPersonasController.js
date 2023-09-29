@@ -33,16 +33,17 @@ const getAllHabilidadesPersonas = (req, res) => {
     });
 };
 
-const deleteHabilidadPersona = (req,res) =>{
+const deleteHabilidadPersona = (req, res) => {
   const idPersona = req.params.id;
-  HabilidadPersonaModel.deleteHabilidadPersona(req.body)
-  .then((respuesta) => {
+  const idHabilidadPersona = req.body.HabilidadPersonaModel.deleteHabilidadPersona(idPersona, idHabilidadPersona)
+    .then((respuesta) => {
       return res.status(201).send({ message: respuesta })
-  })
-  .catch((error) => {
-      return res.status(500).send({ message: 'no se pueden eliminar habilidades' })
-  });
-}; 
+    })
+    .catch((error) => {
+      return res.status(500).send({ message: 'no se pueden eliminar habilidades ' + error })
+    });
+};
+
 module.exports = {
   createHabilidadPersona,
   getHabilidadPersonas,
