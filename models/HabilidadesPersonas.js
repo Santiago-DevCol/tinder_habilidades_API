@@ -38,21 +38,12 @@ const getAllHabilidadesPersonas = () => {
   return database.select("*").from("habilidad_personas");
 };
 
-const deleteHabilidadPersona = async (idPersona) => {
+const deleteHabilidadPersona = async (idPersona,habilidad) => {
   try {
-    const habilidad = await database("habilidad_personas")
-      .where({ fk_persona_id: idPersona })
-      .select('fk_habildad_id')
-      .first();
-
-    if (habilidad) {
-      await database("habilidad_personas")
-        .where({ fk_habilidad_id: habilidad.fk_habilidad_id, fk_persona_id: idPersona })
-        .del();
-      return `Habilidad ${habilidad.fk_habilidad_id} eliminada correctamente para la persona ${idPersona}.`;
-    } else {
-      return `No se encontró una habilidad asociada a la persona ${idPersona}.`;
-    }
+    const habilidadSeleccionada = await database("habilidad_personas")
+      .where({ fk_persona_id: idPersona, fk_habilidad_id:habilidad })
+      .del();
+      
   } catch (error) {
     throw new Error(`Error al eliminar la habilidad: ${error.message}`);
   }
