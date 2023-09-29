@@ -34,6 +34,7 @@ const getAllHabilidadesPersonas = (req, res) => {
 };
 
 const deleteHabilidadPersona = (req,res) =>{
+  const idPersona = req.params.id;
   HabilidadPersonaModel.deleteHabilidadPersona(req.body)
   .then((respuesta) => {
       return res.status(201).send({ message: respuesta })
