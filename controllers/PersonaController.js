@@ -36,7 +36,11 @@ const updatePassword = (req, res) => {
   const password = req.body
   PersonaModel.updatePassword(idPersona, password)
     .then((respuesta) => {
-      return res.status(201).send({ message: respuesta });
+      if (respuesta == 'la clave actual no coincide') {
+        return res.status(401).send({ message: respuesta });
+      }else{
+        return res.status(201).send({ message: respuesta });
+      }
     })
     .catch((error) => {
       return res
