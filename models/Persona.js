@@ -19,7 +19,7 @@ const createPersona = async (persona) => {
 const getPersona = (persona) => {
   let personaid = atob(persona);
   //console.log('persona',personaid)
-  return database("personas").where({ id_persona: personaid });
+  return database("personas").where({ id_persona: personaid }).orderBy('id_persona', 'asc');
 };
 const getAllPersonas = () => {
   return database.select("*").from("personas");
