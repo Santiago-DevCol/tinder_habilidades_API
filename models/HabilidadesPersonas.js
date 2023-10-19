@@ -34,6 +34,31 @@ const getHabilidadPersonas = (id_persona) => {
     .where("personas.id_persona", idPersona);
 };
 
+const getHabilidadPersonasPorIdHabilidad = (id_habilidad) => {
+  let idHabilidad = atob(id_habilidad);
+  return database
+    .select(
+      "personas.id_persona",
+      "personas.nombre_persona",
+      "habilidades.id_habilidad",
+      "habilidades.descripción"
+    )
+    .from("habilidad_personas")
+    .innerJoin(
+      "personas",
+      "habilidad_personas.fk_persona_id",
+      "=",
+      "personas.id_persona"
+    )
+    .innerJoin(
+      "habilidades",
+      "habilidad_personas.fk_habilidad_id",
+      "=",
+      "habilidades.id_habilidad"
+    )
+    .where("habilidades.id_habilidad", idHabilidad);
+};
+
 const getAllHabilidadesPersonas = () => {
   return database.select("*").from("habilidad_personas");
 };
@@ -68,4 +93,5 @@ module.exports = {
   getHabilidadPersonas,
   getAllHabilidadesPersonas,
   deleteHabilidadPersona,
+  getHabilidadPersonasPorIdHabilidad
 };

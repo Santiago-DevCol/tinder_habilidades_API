@@ -7,6 +7,7 @@ router.post('/', HabilidadesPersonasController.createHabilidadPersona);
 //leer
 router.get('/', HabilidadesPersonasController.getAllHabilidadesPersonas);
 router.get('/:id', HabilidadesPersonasController.getHabilidadPersonas);
+router.get('/porhabilidad/:id', HabilidadesPersonasController.getHabilidadPersonasPorIdHabilidad);
 //actualizar
 router.put('/:id', (req,res) => res.send({message: " Se sustituyó"}));
 

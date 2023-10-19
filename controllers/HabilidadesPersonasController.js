@@ -23,6 +23,16 @@ const getHabilidadPersonas = (req, res) => {
       return res.status(500).send({ message: "Ocurrio un error,  " + error });
     });
 };
+const getHabilidadPersonasPorIdHabilidad = (req, res) => {
+  let habilidadId = btoa(req.params.id);
+  HabilidadPersonaModel.getHabilidadPersonasPorIdHabilidad(habilidadId)
+    .then((respuesta) => {
+      return res.status(201).send({ message: respuesta });
+    })
+    .catch((error) => {
+      return res.status(500).send({ message: "Ocurrio un error, ayudaaa  " + error });
+    });
+};
 const getAllHabilidadesPersonas = (req, res) => {
   HabilidadPersonaModel.getAllHabilidadesPersonas()
     .then((respuesta) => {
@@ -51,4 +61,5 @@ module.exports = {
   getHabilidadPersonas,
   getAllHabilidadesPersonas,
   deleteHabilidadPersona,
+  getHabilidadPersonasPorIdHabilidad
 };
