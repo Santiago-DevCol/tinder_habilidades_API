@@ -19,7 +19,7 @@ const createPersona = async (persona) => {
 const getPersona = (persona) => {
   let personaid = atob(persona);
   //console.log('persona',personaid)
-  return database("personas").where({ id_persona: personaid });
+  return database("personas").where({ id_persona: personaid }).orderBy('id_persona', 'asc');
 };
 const getAllPersonas = () => {
   return database.select("*").from("personas");
@@ -56,33 +56,21 @@ const validarPassword = async (queryUser, QueryDB) => {
 };
 const updatePersonaInfo = async (id, data) => {
   try {
-    const {
-      nombre_persona,
-      apellido_persona,
-      email,
-      locacion,
-      precio_servicio,
-      perfil,
-    } = data;
-    const id_persona = id;
+    const {email,campo,value} = data;
+    //console.log(campo + ':' +value);
+    
     const personatUpdate = await database("personas")
-      .where({ id_persona: id_persona, email:email })
-      .update({
-        nombre_persona: nombre_persona,
-        apellido_persona: apellido_persona,
-        locacion: locacion,
-        precio_servicio: precio_servicio,
-        perfil: perfil,
-      });
+      .where({ id_persona: id, email:email })
+      .update({[campo]:value});
+
       if (personatUpdate == 0) {
         return `res:${personatUpdate} | ms: no se actualizaron los datos efectivamente`
       }else{
         return personatUpdate;
       }
   } catch(error){
-   
     console.error(" no se actualizaron los datos efectivamente "+ error);
-    return "no se actualizaron los datos efectivamente";
+    return "no se actualizaron los datos efectivamente" + error;
   }
 };
 /**La función updatePassword se encarga de actualizar la contraseña del usuario usando su id y la contraseña antigua.

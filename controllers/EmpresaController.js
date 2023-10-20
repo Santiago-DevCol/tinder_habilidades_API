@@ -34,7 +34,11 @@ const updateEmpresaPassword = (req,res) => {
     const password = req.body;
     EmpresaModel.updateEmpresaPassword(idEmpresa,password)
     .then((respuesta) => {
-        return res.status(201).send({ message: respuesta })
+        if (respuesta == 'la clave actual no coincide') {
+            return res.status(401).send({ message: respuesta });
+          }else{
+            return res.status(201).send({ message: respuesta });
+          }
     })
     .catch((error) => {
         return res

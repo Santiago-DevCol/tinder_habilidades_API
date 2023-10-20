@@ -38,16 +38,30 @@ const getAllHabilidadesPersonas = () => {
   return database.select("*").from("habilidad_personas");
 };
 
-const deleteHabilidadPersona = async (idPersona,habilidad) => {
+const deleteHabilidadPersona = async (idPersona, idHabilidad) => {
   try {
-    const habilidadSeleccionada = await database("habilidad_personas")
-      .where({ fk_persona_id: idPersona, fk_habilidad_id:habilidad })
-      .del();
-      
+    const habilidad = idHabilidad;
+    const persona = idPersona;
+    console.log(parseInt(persona));
+    console.log(persona);
+    const validarHabilidad = await database("habilidad_personas")
+      .where({ fk_persona_id: parseInt(persona), fk_habilidad_id: parseInt(habilidad.fk_habilidad_id) })
+      .select('fk_habilidad_id')
+
+    if (validarHabilidad.length != 0) {
+      await database("habilidad_personas")
+        .where({ fk_habilidad_id: parseInt(habilidad.fk_habilidad_id), fk_persona_id: parseInt(persona) })
+        .del();
+      return `Habilidad ${habilidad.fk_habilidad_id} eliminada correctamente para la persona ${persona}.`;
+    }
+    else {
+      return `No se encontró una habilidad asociada a la persona ${persona}.`;
+    }
   } catch (error) {
     throw new Error(`Error al eliminar la habilidad: ${error.message}`);
   }
 };
+
 
 module.exports = {
   createHabilidadPersona,
