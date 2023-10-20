@@ -39,6 +39,7 @@ const getAllServicios = () => {
     .select(
       "servicios.id_servicio",
       "personas.id_persona",
+      "empresa.id",
       "personas.nombre_persona",
       "personas.precio_servicio",
       "servicios.descripción",
