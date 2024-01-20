@@ -6,9 +6,13 @@
 module.exports = {
 
   development: {
-    client: 'postgresql',
-    connection: process.env.DATABASE_URL,
-    
+    client:  process.env.LOCAL_CLIENT || 'postgresql',
+    connection: {
+      host: process.env.DB_HOST || '127.0.0.1',
+      database: process.env.DATABASE_LOCAL || 'tinderParaHabilidades',
+      user: process.env.USER_LOCAL || 'postgres',
+      password: process.env.PWD_LOCAL_DB || 'root'
+    },
     pool: {
       min: 2,
       max: 10
@@ -17,22 +21,6 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
-  // development: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     host: '127.0.0.1',
-  //     database: 'tinderParaHabilidades',
-  //     user: 'postgres',
-  //     password: 'root'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // },
 
   staging: {
     client: 'postgresql',
