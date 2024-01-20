@@ -10,7 +10,7 @@ const validarUserCreate = async (req, res) => {
 
   try {
     const User = await LoginModel.validarUser(email);
-    //console.log(User);
+    console.log(User);
     if (User.length != 0) {
       return res.status(302).send({ message: "El usuario ya Existe" });
     }
@@ -32,7 +32,7 @@ const validarEmpresaCreate = async (req, res) => {
 
   try {
     const Empresa = await LoginModel.validarEmpresa(email, nit);
-    //console.log(Empresa);
+    console.log(Empresa);
     if (Empresa.length != 0) {
       return res.status(302).send({ message: "La empresa ya Existe" });
     }
@@ -77,6 +77,7 @@ const login = async (req, res) => {
 
       const ndatos = {...respuesta, token}
       //return res.status(200).send({ message: "Acceso Correcto" });
+      console.log(ndatos);
       return res.status(200).json({ ndatos });
     } else {
       return res.status(404).send({ message: "Credenciales no válidas" });

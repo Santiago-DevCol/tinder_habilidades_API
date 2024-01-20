@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "knex": "knex init",
     "knex_migrations": "knex migrate:make empresa && knex migrate:make persona && knex migrate:make servicios && knex migrate:make habilidades && knex migrate:make habilidad_personas",
     "knex_mig_add_colum_service": "knex migrate:make addColumnServicios",
@@ -20,6 +20,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.6.5",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -30,6 +31,9 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.4.10"
+    "@flydotio/dockerfile": "^0.4.10",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }
